@@ -10,12 +10,6 @@ import time
 import terminalio
 from adafruit_magtag.magtag import MagTag
 
-
-BIG_TEXT = "TEDDY"
-
-# in seconds, we can refresh about 100 times on a battery
-TIME_BETWEEN_REFRESHES = 24 * 60 * 60  # once a day delay
-
 magtag = MagTag()
 #    url=DATA_SOURCE,
 #    json_path=(NAME_LOCATION, DATE_LOCATION, DETAIL_LOCATION)
@@ -44,26 +38,16 @@ magtag.add_text(
 
 # Display heading text below with formatting above
 #magtag.set_text("TEDDY",0)
-#magtag.set_text("WALTER",1)
-magtag.set_text("GARRETT",2)
-
-#try:
-    # Have the MagTag connect to the internet
-#    magtag.network.connect()
-    # This statement gets the JSON data and displays it automagically
-#    value = magtag.fetch()
-#    print("Response is", value)
-#except (ValueError, RuntimeError, ConnectionError, OSError) as e:
-#    print("Some error occured, retrying! -", e)
+magtag.set_text("WALTER",1)
+#magtag.set_text("GARRETT",2)
 
 import board
 from rainbowio import colorwheel
 import neopixel
 
 num_pixels = 4
-#pixels = neopixel.NeoPixel(board.D1, num_pixels, brightness=0.3,auto_write=False)
 pixels = magtag.peripherals.neopixels
-pixels.brightness = 0.1
+pixels.brightness = 0.05
 
 def color_chase(color, wait):
     for i in range(num_pixels):
